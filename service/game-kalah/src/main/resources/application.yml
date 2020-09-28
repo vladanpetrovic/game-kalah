@@ -1,0 +1,12 @@
+kalah:
+  game:
+    settings:
+      num-of-pits: 6
+      num-of-stones: 6
+
+spring:
+  data:
+    mongodb:
+      database: kalah
+    rest:
+      basePath: /api

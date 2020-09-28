@@ -1,0 +1,12 @@
+buildscript {
+    ext {
+        gradleDir = "${rootProject.rootDir}/gradle"
+    }
+}
+
+wrapper.gradleVersion = '6.6.1'
+
+configure(allprojects) {
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+}

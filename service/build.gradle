@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        maven { url gradlePluginsRepo }
+    }
+    dependencies {
+        classpath 'com.avast.gradle:gradle-docker-compose-plugin:0.13.3'
+    }
+}
+
+apply plugin: 'docker-compose'
+
+dockerCompose {
+    useComposeFiles = ['docker-compose.datasources.yml'] // like 'docker-compose -f <file>'; default is empty
+}

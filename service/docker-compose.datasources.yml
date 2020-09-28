@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  mongodb-express:
+    image: mongo-express:latest
+    links:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      - WEB_USER='user'
+      - WEB_PASS='pass'

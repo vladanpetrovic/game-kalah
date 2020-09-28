@@ -1,0 +1,3 @@
+rootProject.name = 'game-kalah'
+include ':service',
+        ':service:game-kalah'
