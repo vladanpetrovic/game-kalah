@@ -1,0 +1,37 @@
+[[kalah-game-api]]
+= Kalah Game API Overview
+
+[[kalah-game-api.list-all-games]]
+== Lists all games
+
+include::{snippets}/games/curl-request.adoc[]
+include::{snippets}/games/http-request.adoc[]
+include::{snippets}/games/http-response.adoc[]
+
+[[kalah-game-api.list-one-game]]
+== List one game
+
+include::{snippets}/game/curl-request.adoc[]
+include::{snippets}/game/http-request.adoc[]
+include::{snippets}/game/http-response.adoc[]
+
+[[kalah-game-api.game1-move-stones-player1-pit1]]
+== Game 1 Player 1 Move 1st pit stones
+
+include::{snippets}/game1-move-stones-player1-pit1/curl-request.adoc[]
+include::{snippets}/game1-move-stones-player1-pit1/http-request.adoc[]
+include::{snippets}/game1-move-stones-player1-pit1/http-response.adoc[]
+
+[[kalah-game-api.game1-move-stones-player1-pit4]]
+== Game 1 Player 1 Move 4th pit stones
+
+include::{snippets}/game1-move-stones-player1-pit4/curl-request.adoc[]
+include::{snippets}/game1-move-stones-player1-pit4/http-request.adoc[]
+include::{snippets}/game1-move-stones-player1-pit4/http-response.adoc[]
+
+[[kalah-game-api.game1-move-stones-player2-pit2]]
+== Game 1 Player 2 Move 2nd pit stones
+
+include::{snippets}/game1-move-stones-player2-pit2/curl-request.adoc[]
+include::{snippets}/game1-move-stones-player2-pit2/http-request.adoc[]
+include::{snippets}/game1-move-stones-player2-pit2/http-response.adoc[]

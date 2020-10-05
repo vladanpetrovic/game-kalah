@@ -1,0 +1,1 @@
+[{"id": "1","settings":{"numOfPits":6,"numOfStones":6},"status":{"state":"STARTED","player_turn":"PLAYER1"},"player1":{"kalah":0,"pits":{"1":6,"2":6,"3":6,"4":6,"5":6,"6":6},"user_id":"111"},"player2":{"kalah":0,"pits":{"1":6,"2":6,"3":6,"4":6,"5":6,"6":6},"user_id":"222"},"_class":"me.vladanpetrovic.game.kalah.data.Game"}]

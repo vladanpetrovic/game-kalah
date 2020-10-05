@@ -7,7 +7,6 @@ import me.vladanpetrovic.game.kalah.data.Game;
 import me.vladanpetrovic.game.kalah.data.GameEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.Message;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.StateMachineFactory;
@@ -16,12 +15,9 @@ import org.springframework.statemachine.config.builders.StateMachineStateConfigu
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
 import org.springframework.statemachine.data.mongodb.MongoDbPersistingStateMachineInterceptor;
 import org.springframework.statemachine.data.mongodb.MongoDbStateMachineRepository;
-import org.springframework.statemachine.listener.StateMachineListener;
-import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.persist.StateMachineRuntimePersister;
 import org.springframework.statemachine.service.DefaultStateMachineService;
 import org.springframework.statemachine.service.StateMachineService;
-import org.springframework.statemachine.transition.Transition;
 
 @Configuration
 public class GameStateMachineConfig {
@@ -43,25 +39,7 @@ public class GameStateMachineConfig {
         @Override
         public void configure(StateMachineConfigurationConfigurer<Game.States, GameEvent.Events> config) throws Exception {
             config.withPersistence()
-                    .runtimePersister(stateMachineRuntimePersister)
-                  .and()
-                    .withConfiguration()
-                    .listener(listener());
-        }
-
-        private StateMachineListener<Game.States, GameEvent.Events> listener() {
-
-            return new StateMachineListenerAdapter<>() {
-                @Override
-                public void eventNotAccepted(Message<GameEvent.Events> event) {
-                    log.error("Not accepted event: {}", event);
-                }
-
-                @Override
-                public void transition(Transition<Game.States, GameEvent.Events> transition) {
-                    log.warn("GAME state moved from: {}, to: {}", transition.getSource().getId(), transition.getTarget().getId());
-                }
-            };
+                    .runtimePersister(stateMachineRuntimePersister);
         }
 
         @Override

@@ -32,19 +32,22 @@ dependencies {
 	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
 	implementation "org.springframework.statemachine:spring-statemachine-starter:${stateMachineVersion}"
 	implementation "org.springframework.statemachine:spring-statemachine-data-mongodb:${stateMachineVersion}"
-	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
-	testImplementation 'io.projectreactor:reactor-test'
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
+	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 dependencyManagement {
@@ -59,6 +62,14 @@ test {
 }
 
 asciidoctor {
+	attributes 'snippets': snippetsDir
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+bootJar {
+	dependsOn asciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		into "BOOT-INF/classes/static/docs"
+	}
 }

@@ -1,9 +1,7 @@
 package me.vladanpetrovic.game.kalah.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Data;
 import me.vladanpetrovic.game.kalah.config.GameConfig;
 import org.springframework.data.annotation.Id;
@@ -19,7 +17,6 @@ public class Game {
     @Id
     private String id;
 
-    @JsonIgnore
     private GameConfig.Settings settings;
     private Status status;
     private Player player1;
@@ -27,10 +24,11 @@ public class Game {
 
     public Game() {
         this.status = Status.initial();
+        this.player1 = new Player();
+        this.player2 = new Player();
     }
 
     @Data
-    @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class Status {
         private States state;
@@ -39,10 +37,10 @@ public class Game {
         private String winner;
 
         public static Status initial() {
-            return Status.builder()
-                    .state(States.STARTED)
-                    .playerTurn(Players.PLAYER1)
-                    .build();
+            Status status = new Status();
+            status.state = States.STARTED;
+            status.playerTurn = Players.PLAYER1;
+            return status;
         }
     }
 

@@ -10,3 +10,12 @@ spring:
       database: kalah
     rest:
       basePath: /api
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
